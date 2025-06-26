@@ -1,0 +1,73 @@
+name: Automatic Lab Notebook Generator
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository with fetch-depth 2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Fetches current and previous commit
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies (optional, but good practice)
+        run: |
+          python -m pip install --upgrade pip
+          pip install nbconvert
+
+      - name: Get previous commit's ipynb file
+        id: get-ipynb-path
+        run: |
+          PREV_COMMIT_SHA=$(git rev-parse HEAD~1)
+          PREV_IPYNB=$(git show $PREV_COMMIT_SHA --name-only --diff-filter=A --diff-filter=M | grep '\.ipynb$' | head -n 1)
+
+          if [ -z "$PREV_IPYNB" ]; then
+            echo "No .ipynb file found in the previous commit, or it was deleted."
+            exit 1
+          fi
+
+          git show $PREV_COMMIT_SHA:$PREV_IPYNB > prev_commit.ipynb
+          echo "Copied previous commit's .ipynb file to prev_commit.ipynb"
+          echo "PREV_IPYNB_PATH=prev_commit.ipynb" >> $GITHUB_ENV
+
+      - name: Execute ALN Python script and generate log
+        run: |
+          echo "Running Python script with ipynb file from previous commit: $PREV_IPYNB_PATH"
+
+          # Example: A simple Python script that uses the ipynb (replace with your actual script)
+          # python your_script.py --ipynb-file $PREV_IPYNB_PATH
+
+          # Creating the aln_output folder and files
+          echo "Creating aln_output directory and files..."
+          mkdir -p aln_output/images
+          echo "# Hello alan." > aln_output/output.md
+          echo "Hello jeff." >> aln_output/output.md
+
+      - name: Upload aln_output as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aln_output
+          path: aln_output/
+          overwrite: true
+
+      - name: Commit aln_output
+        if: success() # Only commit if previous steps succeeded
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add aln_output/
+          git commit -m "Generated aln_output from workflow"
+          git push
+        continue-on-error: true
