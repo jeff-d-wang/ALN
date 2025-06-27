@@ -10,3 +10,9 @@ This update primarily introduces new narrative text through Markdown cells acros
 
 ---
 
+## Research Progress Update (2025-06-27 00:33:14)
+
+The updates involved adding `scanpy` library import to `analysis4.ipynb` for single-cell analysis. The other notebooks (`analysis.ipynb`, `analysis2.ipynb`, `analysis3.ipynb`) showed no changes.
+
+---
+
