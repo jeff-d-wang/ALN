@@ -46,7 +46,7 @@ jobs:
           echo ""
 
           TRUE_PREV_COMMIT=""
-          for COMMIT in $(git rev-list HEAD); do
+          for COMMIT in $(git rev-list HEAD~1); do
             AUTHOR=$(git show -s --format='%an' "$COMMIT")
             if [ "$AUTHOR" != "github-actions[bot]" ]; then
               TRUE_PREV_COMMIT="$COMMIT"
