@@ -4,9 +4,12 @@ from pathlib import Path
 from datetime import datetime
 from google import genai
 import pytz
+from google.genai import types
 
 # === CONFIG ===
 API_KEY = "AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko"
+MODEL = "gemini-2.5-flash-lite-preview-06-17"
+THINKING_BUDGET = 0
 
 # === FUNCTIONS ===
 
@@ -20,7 +23,7 @@ def load_code_eln(path):
 def load_suggestions(path):
     return Path(path).read_text() if path.exists() else ""
 
-def generate_suggestion(model, full_code_eln, latest_change, previous_suggestions):
+def generate_suggestion(client, full_code_eln, latest_change, previous_suggestions):
     prompt = f"""
 You are an assistant helping a computational biologist reflect on their notebook editing progress.
 
@@ -35,7 +38,13 @@ Here are previous suggestions that were already given:
 
 Please generate a short new suggestion based on the full history, with an emphasis on the more recent changes. The suggestions should take into account what the user has been trying to do, what they've tried already, and recommend next steps or improvements.
 """
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model=MODEL,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            thinking_config=types.ThinkingConfig(thinking_budget=THINKING_BUDGET)
+        )
+    )
     return response.text.strip()
 
 def append_suggestion_to_file(suggestion, path):
@@ -61,14 +70,13 @@ def main():
     args = parser.parse_args()
 
     # Configure Gemini model
-    genai.configure(api_key=API_KEY)
-    model = genai.GenerativeModel("models/gemini-1.5-flash")
+    client = genai.Client(api_key=API_KEY)
 
     # Load changes and generate suggestion
     full_code, latest = load_code_eln(args.code_eln_path)
     previous_suggestions = load_suggestions(args.suggestion_path)
 
-    suggestion = generate_suggestion(model, full_code, latest, previous_suggestions)
+    suggestion = generate_suggestion(client, full_code, latest, previous_suggestions)
     append_suggestion_to_file(suggestion, args.suggestion_path)
 
 if __name__ == "__main__":
