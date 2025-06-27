@@ -48,6 +48,13 @@ jobs:
           TRUE_PREV_COMMIT=""
           for COMMIT in $(git rev-list HEAD~1); do
             AUTHOR=$(git show -s --format='%an' "$COMMIT")
+            PARENTS=$(git rev-list --parents -n 1 "$COMMIT" | wc -w)
+
+            if [ "$AUTHOR" != "github-actions[bot]" ] && [ "$PARENTS" -eq 2 ]; then
+              # Skip merge commits (they have 2+ parents)
+              continue
+            fi
+
             if [ "$AUTHOR" != "github-actions[bot]" ]; then
               TRUE_PREV_COMMIT="$COMMIT"
               break
