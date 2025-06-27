@@ -35,8 +35,14 @@ jobs:
           mkdir -p prev_notebooks
           INPUT_ARGS=""
 
-          # get the most recent non-bot commit
-          TRUE_PREV_COMMIT=$(git rev-list HEAD --max-count=1 --skip=1 --author='^(?!github-actions\[bot\])' --regexp-ignore-case)
+          TRUE_PREV_COMMIT=""
+          for COMMIT in $(git rev-list HEAD); do
+            AUTHOR=$(git show -s --format='%an' "$COMMIT")
+            if [ "$AUTHOR" != "github-actions[bot]" ]; then
+              TRUE_PREV_COMMIT="$COMMIT"
+              break
+            fi
+          done
 
           if [ -z "$TRUE_PREV_COMMIT" ]; then
             echo "Previous human-made commit not found; skipping ALN."
@@ -60,6 +66,11 @@ jobs:
 
       - name: Execute ALN Python script and generate log
         run: |
+          if [ -z "$FINAL_INPUT_ARGS" ]; then
+            echo "No input notebook pairs found; skipping ALN."
+            exit 0
+          fi
+
           echo "Running main.py with inputs: $FINAL_INPUT_ARGS"
           mkdir -p aln_output
           python .github/workflows/main.py --input $FINAL_INPUT_ARGS --output ./aln_output/
