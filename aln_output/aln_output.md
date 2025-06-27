@@ -24,3 +24,9 @@ Initiated `notebook_3_liver_snRNA.ipynb` to analyze single-nucleus RNA sequencin
 
 ---
 
+## Research Progress Update (2025-06-27 14:14:18)
+
+Updated the `notebook_3_liver_snRNA.ipynb` to capture all cell outputs, specifically running a previously unexecuted print statement. No changes were made to the code, input file (`liver_frozenTissue_RNA.h5ad`), or the generated figures (UMAP plots and dot plot of marker genes). Notebooks `notebook_2_liver_xenium.ipynb` (input: `xenium_adata.h5ad`) and `notebook_1_liver_analysis_1.ipynb` (input: `liver_liveTissue_RNA.h5ad`) remain unchanged.
+
+---
+
