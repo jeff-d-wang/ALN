@@ -16,3 +16,9 @@ The updates involved adding `scanpy` library import to `analysis4.ipynb` for sin
 
 ---
 
+## Research Progress Update (2025-06-27 00:50:18)
+
+No changes detected across multiple Jupyter notebooks (`analysis.ipynb`, `analysis2.ipynb`, `analysis3.ipynb`, `analysis4.ipynb`). One new notebook (`analysis5.ipynb`) was created to introduce analysis of immune dysregulations, with an initial markdown cell and no code or data.
+
+---
+
