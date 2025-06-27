@@ -48,13 +48,20 @@ jobs:
           echo ""
 
           TRUE_PREV_COMMIT=""
-          for COMMIT in $(git rev-list HEAD~1); do
+          for COMMIT in $(git rev-list HEAD); do
+            # Skip the current commit
+            if [ "$COMMIT" = "$CURRENT_COMMIT" ]; then
+              continue
+            fi
+
             AUTHOR=$(git show -s --format='%an' "$COMMIT")
 
+            # Skip bot commits
             if [ "$AUTHOR" = "github-actions[bot]" ]; then
               continue
             fi
 
+            # Only consider commits with .ipynb changes
             if git diff-tree --no-commit-id --name-only -r "$COMMIT" | grep -q "\.ipynb$"; then
               TRUE_PREV_COMMIT="$COMMIT"
               break
