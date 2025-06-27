@@ -60,3 +60,9 @@ The notebook `notebook_3_liver_snRNA.ipynb` was updated to include a new dotplot
 
 ---
 
+## Research Progress Update (2025-06-27 15:03:29)
+
+The analysis of liver snRNA-seq data (`notebook_3_liver_snRNA.ipynb`) and Xenium data (`notebook_2_liver_xenium.ipynb`) showed no changes between versions. However, `notebook_1_liver_analysis_1.ipynb` was updated with a new introductory print statement, relocation of R magic commands, and reordering of UMAP dimensionality reduction, plotting, and Leiden clustering steps, with marker gene identification added as the final step.
+
+---
+
