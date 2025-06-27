@@ -7,3 +7,12 @@ Analyzed mouse liver scRNA-seq data from `/Users/jamesbolepan/Documents/research
 
 ---
 
+## Research Progress Update (2025-06-27 12:48:58)
+
+A new analysis pipeline was introduced for `liver_liveTissue_RNA.h5ad`, including data normalization, log transformation, PCA, UMAP, and Leiden clustering. Visualizations of UMAP embeddings colored by cell types and Leiden clusters were generated.
+
+![UMAP plot colored by celltypes_figure2plot](aln_output/notebook_images/notebook_1_liver_1_cell4_out1.png)
+![UMAP plot colored by leiden clusters](aln_output/notebook_images/notebook_1_liver_1_cell6_out2.png)
+
+---
+
