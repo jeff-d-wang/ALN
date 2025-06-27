@@ -1,21 +1,21 @@
-# 🧠 Automatic Lab Notebook (ALN)
+# Automatic Lab Notebook (ALN)
 
 Automatically generate structured, AI-enhanced summaries of Jupyter Notebook changes on each commit. Designed to improve research reproducibility, documentation, and collaboration with minimal manual effort.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🪄 **Automatic Summarization**: Uses LLMs to compare notebook versions and generate concise summaries.
-- 🔍 **Version Comparison**: Detects and compares `.ipynb` changes between commits.
-- 📝 **New Notebook Detection**: Gracefully handles newly created notebooks by summarizing content.
-- 💡 **Improvement Suggestions**: Provides suggestions to enhance code readability, structure, or clarity.
-- 📦 **GitHub Actions Integration**: Fully automated pipeline runs on notebook updates.
-- 📂 **Artifact Output**: Summaries saved as markdown files and uploaded as artifacts.
+- **Automatic Summarization**: Uses LLMs to compare notebook versions and generate concise summaries.
+- **Version Comparison**: Detects and compares `.ipynb` changes between commits.
+- **New Notebook Detection**: Gracefully handles newly created notebooks by summarizing content.
+- **Improvement Suggestions**: Provides suggestions to enhance code readability, structure, or clarity.
+- **GitHub Actions Integration**: Fully automated pipeline runs on notebook updates.
+- **Artifact Output**: Summaries saved as markdown files and uploaded as artifacts.
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 1. **Fork or Clone** this repository.
 
@@ -32,11 +32,11 @@ Automatically generate structured, AI-enhanced summaries of Jupyter Notebook cha
    - The GitHub Action will:
      - Compare notebook changes
      - Generate summaries
-     - Upload a markdown artifact under `aln_output/`
+     - Upload markdown artifacts under `aln_output/`
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Python 3.9**
 - `google-generativeai` (Gemini API)
@@ -45,22 +45,19 @@ Automatically generate structured, AI-enhanced summaries of Jupyter Notebook cha
 - `git`, `bash`, and GitHub Actions
 
 ---
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 🙌 Acknowledgements
+## Acknowledgements
 
 - [Gemini by Google](https://ai.google.dev/)
 - [GitHub Actions](https://docs.github.com/en/actions)
 
 ---
 
-## 💬 Contributing
+## Contributing
 
 Pull requests and issues are welcome. If you have ideas to improve accuracy, formatting, or add support for more file types, feel free to open a PR.
-
-
-

@@ -72,13 +72,13 @@ jobs:
 
             echo "🔸 Checking commit: $COMMIT by $AUTHOR"
 
-            echo "🧪 Files changed in $COMMIT:"
+            echo "Files changed in $COMMIT:"
             CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r "$COMMIT")
             echo "$CHANGED_FILES"
 
             # Now test if any of them are .ipynb
             if echo "$CHANGED_FILES" | grep '\.ipynb$' > /dev/null; then
-              echo "✅ Found .ipynb changes in $COMMIT"
+              echo "Found .ipynb changes in $COMMIT"
               TRUE_PREV_COMMIT="$COMMIT"
               break
             else
