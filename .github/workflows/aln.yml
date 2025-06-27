@@ -49,6 +49,8 @@ jobs:
             exit 0
           fi
 
+          echo "Referencing $TRUE_PREV_COMMIT as previous commit"
+
           for CURR_PATH in $(find . -maxdepth 1 -name "*.ipynb"); do
             CURR_NAME=$(basename "$CURR_PATH")
 
