@@ -27,7 +27,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install nbconvert
+          pip install -q nbconvert
+          pip install -q -U google-genai
 
       - name: Extract current and previous .ipynb files
         id: extract-ipynbs
@@ -96,9 +97,9 @@ jobs:
             exit 0
           fi
 
-          echo "Running main.py with inputs: $FINAL_INPUT_ARGS"
+          echo "Running script_summarize_changes.py with inputs: $FINAL_INPUT_ARGS"
           mkdir -p aln_output
-          python .github/workflows/main.py --input $FINAL_INPUT_ARGS --output ./aln_output/
+          python .github/workflows/script_summarize_changes.py --input $FINAL_INPUT_ARGS --output ./aln_output/aln_output.md
 
       - name: Upload aln_output as an artifact
         uses: actions/upload-artifact@v4
