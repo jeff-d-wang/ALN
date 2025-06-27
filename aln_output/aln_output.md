@@ -48,3 +48,9 @@ Added an R magic command cell which resulted in an error, and shifted cell order
 
 ---
 
+## Research Progress Update (2025-06-27 14:51:54)
+
+This update introduces data subsampling to `notebook_1_liver_analysis_1.ipynb`, reducing the analyzed cell count by 90%. Subsequent PCA, UMAP, and Leiden clustering analyses are now performed on this subset. `notebook_3_liver_snRNA.ipynb` and `notebook_2_liver_xenium.ipynb` remain unchanged.
+
+---
+

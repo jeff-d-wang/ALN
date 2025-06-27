@@ -32,3 +32,9 @@ Considering the progress, a good next step would be to **integrate and compare t
 
 The latest change involves introducing an R magic command that resulted in an error, along with a shift in cell ordering within `notebook_1_liver_analysis_1.ipynb`. Since the analyses in `notebook_2_liver_xenium.ipynb` and `notebook_3_liver_snRNA.ipynb` have remained stable, and `notebook_1` is primarily focused on live tissue RNA-seq, it would be beneficial to **debug the R magic command issue in `notebook_1` and then revisit the comparison of marker genes between the live tissue (notebook_1) and frozen tissue (notebook_3) datasets.** This will help ensure the stability of your primary RNA-seq analysis pipeline and allow for a more direct comparison of cell type specific markers obtained from different tissue processing methods.
 
+## 2025-06-27 14:51:56 Next Step Suggestions 
+
+The most recent change involves subsampling the data in `notebook_1_liver_analysis_1.ipynb` to 10% of the original cell count. This is a significant reduction that will impact the downstream analysis.
+
+Considering this, a good next step would be to **evaluate the impact of this data subsampling on the results of `notebook_1_liver_analysis_1.ipynb`**. Specifically, compare the UMAP visualizations and Leiden cluster assignments obtained from the subsampled data with those from the full dataset (as it was before the subsampling). Does the reduced cell count significantly alter the major cell populations identified or the overall structure of the data? This evaluation will help you determine if the subsampling is an appropriate strategy for your analysis or if further adjustments are needed.
+
