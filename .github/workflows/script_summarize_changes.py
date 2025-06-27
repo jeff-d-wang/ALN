@@ -9,7 +9,7 @@ import re
 from google.genai import types
 
 # --- Setup Gemini API ---
-GEMINI_API_KEY = getpass.getpass("Enter your API key: ")
+GEMINI_API_KEY = "AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko" # getpass.getpass("Enter your API key: ")
 THINKING_BUDGET = 0
 
 def sanitize_filename(name):
