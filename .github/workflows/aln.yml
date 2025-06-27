@@ -62,6 +62,8 @@ jobs:
             fi
 
             echo "🔸 Checking commit: $COMMIT by $AUTHOR"
+            # print the ipynb changes in the commit
+            git diff-tree --no-commit-id --name-only -r "$COMMIT"
             # Only consider commits with .ipynb changes
             if git diff-tree --no-commit-id --name-only -r "$COMMIT" | grep '\.ipynb'; then
               TRUE_PREV_COMMIT="$COMMIT"
