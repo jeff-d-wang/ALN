@@ -10,8 +10,8 @@ Compared with: `analysis.ipynb`
 
 Compared with: `analysis3.ipynb`
 ## Changes Observed
-- Current notebook of ./analysis3.ipynb has 5 cells.
-- Previous notebook of prev_notebooks/analysis3.ipynb had 5 cells.
+- Current notebook of ./analysis3.ipynb has 2 cells.
+- Previous notebook of prev_notebooks/analysis3.ipynb had 2 cells.
 
 
 Compared with: `analysis2.ipynb`
