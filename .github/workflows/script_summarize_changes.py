@@ -109,7 +109,8 @@ def summarize_notebook_pairs(notebook_pairs, output_file):
         "Below are detailed summaries of changes made across multiple Jupyter notebooks as part of a single code update. "
         "Synthesize these individual updates into a concise, high-level summary to include in a lab notebook. "
         "Focus on overarching objectives, patterns in changes (e.g., new analyses, data preprocessing updates, visualizations added). Don't interpret, just summarize. "
-        "Consider inserting key figures that are changed. Don't output anything that says [insert date]. Don't include content that is unchanged. Note the input file names as well. Try to be very concise and not repetitive (< 5 lines, excluding figures). \n\n"
+        "Consider inserting key figures that are changed. Don't output anything that says [insert date]. DON'T INCLUDE WHAT IS UNCHANGED!! Note the input file names as well. Try to be very concise and not repetitive (< 5 lines)."
+        "Try to identify key changed figures, if they exist and decide whether to include them. \n\n"
         + "\n\n---\n\n".join(individual_summaries)
     )
 
