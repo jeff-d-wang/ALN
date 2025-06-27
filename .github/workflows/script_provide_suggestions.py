@@ -51,7 +51,7 @@ def append_suggestion_to_file(suggestion, path):
     tz = pytz.timezone("America/New_York")  # Change to your desired timezone
     timestamp = datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
     section = f"""
-## {timestamp}
+## {timestamp} Next Step Suggestions 
 
 {suggestion}
 """
