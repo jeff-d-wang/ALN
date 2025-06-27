@@ -10,7 +10,7 @@ from google.genai import types
 import pytz
 
 # --- Setup Gemini API ---
-GEMINI_API_KEY = "AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko"
+GEMINI_API_KEY = os.environ["GEMINI_API_KEY"] #"AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko"
 THINKING_BUDGET = 0
 MODEL = "gemini-2.5-flash-lite-preview-06-17"
 
@@ -19,9 +19,10 @@ def sanitize_filename(name):
     return re.sub(r'[^\w\-_.]', '_', os.path.splitext(os.path.basename(name))[0])
 
 
-def extract_cells(notebook_path, images_folder="./aln_output/notebook_images"):
+def extract_cells(notebook_path, images_folder="notebook_images"):
     notebook_id = sanitize_filename(notebook_path)
-    os.makedirs(images_folder, exist_ok=True)
+    os_images_folder = os.path.join("./aln_output/", images_folder)
+    os.makedirs(os_images_folder, exist_ok=True)
 
     cells = []
 

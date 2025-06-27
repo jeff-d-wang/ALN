@@ -5,9 +5,11 @@ from datetime import datetime
 from google import genai
 import pytz
 from google.genai import types
+import os
 
 # === CONFIG ===
-API_KEY = "AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko"
+# API_KEY = "AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko"
+API_KEY = os.environ["GEMINI_API_KEY"]
 MODEL = "gemini-2.5-flash-lite-preview-06-17"
 THINKING_BUDGET = 0
 
