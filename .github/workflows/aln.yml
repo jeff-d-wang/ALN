@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository with fetch-depth 2
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 5
 
       - name: Print available git history
         run: |
