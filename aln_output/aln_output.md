@@ -12,11 +12,15 @@ The updates across `notebook_2_liver_xenium.ipynb` and `notebook_1_liver_analysi
 
 *   `notebook_1_liver_analysis_1.ipynb` underwent a refinement in its single-cell RNA-seq analysis of `liver_liveTissue_RNA.h5ad`. The Leiden clustering resolution was adjusted from `1.0` to `0.8` (Figure: `Leiden_0.8 UMAP`), leading to a recalculation of marker genes based on the new cluster definitions.
 
+![Figure 3: Dot Plot](./notebook_images/notebook_2_liver_xenium_cell11_out2.png)
+
 ---
 
 ## Research Progress Update (2025-06-27 13:41:52)
 
 Initiated `notebook_3_liver_snRNA.ipynb` to analyze single-nucleus RNA sequencing data from `liver_frozenTissue_RNA.h5ad`. The analysis includes standard Scanpy preprocessing (normalization, log-transform, highly variable gene selection), dimensionality reduction (PCA, UMAP), Leiden clustering, and initial marker gene identification via t-test. Key figures generated include UMAPs colored by pre-defined cell types (Figure 1) and by new Leiden clusters (Figure 2), and a dot plot showing top marker genes (Figure 3). Notebooks `notebook_1_liver_analysis_1.ipynb` and `notebook_2_liver_xenium.ipynb` remained unchanged.
+
+![Figure 3: Dot Plot](./notebook_images/notebook_3_liver_snRNA_cell9_out2.png)
 
 ---
 
