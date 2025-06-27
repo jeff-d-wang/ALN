@@ -13,6 +13,8 @@ def process_notebooks(input, output_dir):
 
     input_pairs = list(zip(input[::2], input[1::2]))
 
+    markdown_content = f"# ALN Output\n\n"
+
     for prev_path, curr_path in input_pairs:
         print(f"Diffing {prev_path} and {curr_path}")
         current_nb = None
@@ -42,13 +44,9 @@ def process_notebooks(input, output_dir):
         else:
             print("Previous notebook path is 'none' or file not found. Skipping previous notebook processing.")
 
-        # Compare notebooks
-        markdown_content = f"# Analysis Output\n\n"
-        markdown_content += f"Generated from: `{os.path.basename(curr_path)}`\n\n"
-
         if previous_nb:
             markdown_content += f"Compared with: `{os.path.basename(prev_path)}`\n\n"
-            markdown_content += "## Changes Observed (Placeholder)\n"
+            markdown_content += "## Changes Observed\n"
             current_cells = len(current_nb.cells) if current_nb else 0
             previous_cells = len(previous_nb.cells) if previous_nb else 0
             markdown_content += f"- Current notebook of {curr_path} has {current_cells} cells.\n"
