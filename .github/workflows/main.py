@@ -45,7 +45,7 @@ def process_notebooks(input, output_dir):
             print("Previous notebook path is 'none' or file not found. Skipping previous notebook processing.")
 
         if previous_nb:
-            markdown_content += f"Compared with: `{os.path.basename(prev_path)}`\n\n"
+            markdown_content += f"\n\nCompared with: `{os.path.basename(prev_path)}`\n"
             markdown_content += "## Changes Observed\n"
             current_cells = len(current_nb.cells) if current_nb else 0
             previous_cells = len(previous_nb.cells) if previous_nb else 0
