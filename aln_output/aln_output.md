@@ -42,3 +42,9 @@ No functional changes detected across `notebook_3_liver_snRNA.ipynb`, `notebook_
 
 ---
 
+## Research Progress Update (2025-06-27 14:39:17)
+
+Added an R magic command cell which resulted in an error, and shifted cell ordering. Analyzed live tissue RNA data from `/Users/jamesbolepan/Documents/research_LiverStress_Immune/rds_manual_extract/liver_liveTissue_RNA.h5ad` using standard scanpy preprocessing, clustering, and differential gene expression analysis.
+
+---
+

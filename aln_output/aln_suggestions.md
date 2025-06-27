@@ -26,3 +26,9 @@ The recent change involves a minor textual update in a print statement within `n
 
 Considering the progress, a good next step would be to **integrate and compare the marker gene lists from all three notebooks**. For instance, how do the top marker genes identified in `notebook_1_liver_analysis_1.ipynb` (single-cell liver tissue) compare to those from `notebook_3_liver_snRNA.ipynb` (single-nucleus liver tissue)? Furthermore, you could investigate if the `NKG7+ KLRB1+ T/NK` cells identified spatially in `notebook_2_liver_xenium.ipynb` can be found and characterized using these marker genes in either of the other two datasets. This comparative analysis will help validate findings and build a more robust understanding of the different cell types present in the liver.
 
+## 2025-06-27 14:39:18 Next Step Suggestions 
+
+## 2025-06-27 14:39:20 Next Step Suggestions
+
+The latest change involves introducing an R magic command that resulted in an error, along with a shift in cell ordering within `notebook_1_liver_analysis_1.ipynb`. Since the analyses in `notebook_2_liver_xenium.ipynb` and `notebook_3_liver_snRNA.ipynb` have remained stable, and `notebook_1` is primarily focused on live tissue RNA-seq, it would be beneficial to **debug the R magic command issue in `notebook_1` and then revisit the comparison of marker genes between the live tissue (notebook_1) and frozen tissue (notebook_3) datasets.** This will help ensure the stability of your primary RNA-seq analysis pipeline and allow for a more direct comparison of cell type specific markers obtained from different tissue processing methods.
+
