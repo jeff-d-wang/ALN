@@ -62,7 +62,7 @@ jobs:
             fi
 
             # Only consider commits with .ipynb changes
-            if git diff-tree --no-commit-id --name-only -r "$COMMIT" | grep -q "\.ipynb$"; then
+            if git diff-tree --no-commit-id --name-only -r "$COMMIT" | grep '\.ipynb'; then
               TRUE_PREV_COMMIT="$COMMIT"
               break
             else
