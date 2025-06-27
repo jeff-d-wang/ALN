@@ -2,8 +2,8 @@
 
 Generated from: `analysis.ipynb`
 
-Compared with: `prev_commit.ipynb`
+Compared with: `analysis.ipynb`
 
 ## Changes Observed (Placeholder)
-- Current notebook has 7 cells.
-- Previous notebook had 5 cells.
+- Current notebook of ./analysis.ipynb has 7 cells.
+- Previous notebook of prev_notebooks/analysis.ipynb had 6 cells.
