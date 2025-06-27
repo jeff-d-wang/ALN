@@ -40,24 +40,23 @@ jobs:
           CURRENT_AUTHOR=$(git log -1 --pretty=%an)
 
           echo "🟢 Current Commit:"
-          echo "🔢 Hash: $CURRENT_COMMIT"
-          echo "👤 Author: $CURRENT_AUTHOR"
-          echo "📝 Message: $CURRENT_COMMIT_MSG"
+          echo "Hash: $CURRENT_COMMIT"
+          echo "Author: $CURRENT_AUTHOR"
+          echo "Message: $CURRENT_COMMIT_MSG"
           echo ""
 
           TRUE_PREV_COMMIT=""
           for COMMIT in $(git rev-list HEAD~1); do
             AUTHOR=$(git show -s --format='%an' "$COMMIT")
-            PARENTS=$(git rev-list --parents -n 1 "$COMMIT" | wc -w)
-
-            if [ "$AUTHOR" != "github-actions[bot]" ] && [ "$PARENTS" -eq 2 ]; then
-              # Skip merge commits (they have 2+ parents)
-              continue
-            fi
 
             if [ "$AUTHOR" != "github-actions[bot]" ]; then
               TRUE_PREV_COMMIT="$COMMIT"
               break
+            fi
+
+            if ! git diff-tree --no-commit-id --name-only -r "$COMMIT" | grep -q "\.ipynb$"; then
+              echo "🔸 Skipping $COMMIT — no .ipynb changes"
+              continue
             fi
           done
 
@@ -70,9 +69,9 @@ jobs:
           TRUE_PREV_AUTHOR=$(git log -1 --pretty=%an $TRUE_PREV_COMMIT)
 
           echo "🔵 True Previous Commit (non-bot):"
-          echo "🔢 Hash: $TRUE_PREV_COMMIT"
-          echo "👤 Author: $TRUE_PREV_AUTHOR"
-          echo "📝 Message: $TRUE_PREV_COMMIT_MSG"
+          echo "Hash: $TRUE_PREV_COMMIT"
+          echo "Author: $TRUE_PREV_AUTHOR"
+          echo "Message: $TRUE_PREV_COMMIT_MSG"
           echo ""
 
           for CURR_PATH in $(find . -maxdepth 1 -name "*.ipynb"); do
