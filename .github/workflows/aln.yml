@@ -29,6 +29,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -q nbconvert
           pip install -q -U google-genai
+          pip install -q pytz
 
       - name: Extract current and previous .ipynb files
         id: extract-ipynbs
