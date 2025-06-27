@@ -48,17 +48,18 @@ jobs:
           echo ""
 
           TRUE_PREV_COMMIT=""
-          for COMMIT in $(git rev-list HEAD~1); do
+          for COMMIT in $(git rev-list HEAD); do
             AUTHOR=$(git show -s --format='%an' "$COMMIT")
 
-            if [ "$AUTHOR" != "github-actions[bot]" ]; then
-              TRUE_PREV_COMMIT="$COMMIT"
-              break
+            if [ "$AUTHOR" = "github-actions[bot]" ]; then
+              continue
             fi
 
-            if ! git diff-tree --no-commit-id --name-only -r "$COMMIT" | grep -q "\.ipynb$"; then
+            if git diff-tree --no-commit-id --name-only -r "$COMMIT" | grep -q "\.ipynb$"; then
+              TRUE_PREV_COMMIT="$COMMIT"
+              break
+            else
               echo "🔸 Skipping $COMMIT — no .ipynb changes"
-              continue
             fi
           done
 
