@@ -36,3 +36,9 @@ Updated the snRNA-seq analysis (`notebook_3_liver_snRNA.ipynb`) to include an ad
 
 ---
 
+## Research Progress Update (2025-06-27 14:33:40)
+
+No functional changes detected across `notebook_3_liver_snRNA.ipynb`, `notebook_2_liver_xenium.ipynb`, and `notebook_1_liver_analysis_1.ipynb`. The only modification was a print statement in `notebook_1_liver_analysis_1.ipynb` (Cell 3) updated from "Hello world" to "Hello world from Antonia's code!".
+
+---
+

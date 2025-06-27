@@ -20,3 +20,9 @@ Given that you've now set up and run `notebook_3_liver_snRNA.ipynb` to capture a
 
 Given that you've now consistently captured outputs and refined visualizations in `notebook_3_liver_snRNA.ipynb`, a focused next step would be to specifically compare the UMAP layouts and clustering results from `notebook_3` (single-nucleus) and `notebook_1` (single-cell). Are the major cell populations similarly structured in both UMAPs? Do the Leiden clusters align well between the two, even with the different tissue inputs and processing? This direct visual and quantitative comparison will help assess consistency and highlight potential differences arising from the live vs. frozen tissue preparation.
 
+## 2025-06-27 14:33:42 Next Step Suggestions 
+
+The recent change involves a minor textual update in a print statement within `notebook_1_liver_analysis_1.ipynb`. This suggests that the core analyses in all three notebooks are stable for now.
+
+Considering the progress, a good next step would be to **integrate and compare the marker gene lists from all three notebooks**. For instance, how do the top marker genes identified in `notebook_1_liver_analysis_1.ipynb` (single-cell liver tissue) compare to those from `notebook_3_liver_snRNA.ipynb` (single-nucleus liver tissue)? Furthermore, you could investigate if the `NKG7+ KLRB1+ T/NK` cells identified spatially in `notebook_2_liver_xenium.ipynb` can be found and characterized using these marker genes in either of the other two datasets. This comparative analysis will help validate findings and build a more robust understanding of the different cell types present in the liver.
+
