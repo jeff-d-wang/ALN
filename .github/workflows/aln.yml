@@ -85,7 +85,8 @@ jobs:
               echo "Recovered previous version of $CURR_NAME"
               INPUT_ARGS+=" prev_notebooks/$CURR_NAME $CURR_PATH"
             else
-              echo "Previous version of $CURR_NAME not found; skipping notebook."
+              echo "Previous version of $CURR_NAME not found; notebook is newly created."
+              INPUT_ARGS+=" None $CURR_PATH"
             fi
           done
 
