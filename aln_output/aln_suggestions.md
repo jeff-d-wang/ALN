@@ -18,3 +18,13 @@ It seems you've added a print statement for testing purposes in the third code c
 
 Now that you've added a test print statement, consider running the notebook and examining the output. Based on what you observe, you can then decide whether to keep the print statement, modify it, or move on to the next analysis step. If the print statement helped you understand something important, you might consider adding a comment explaining what you learned or why that specific output is relevant.
 
+## 2025-06-27 12:08:39 Next Step Suggestions 
+
+## 2025-06-27 12:08:38 Next Step Suggestions
+
+You've successfully added a markdown cell to announce the import of your liver snRNA-seq dataset, which is a great way to keep your notebook organized and informative.
+
+**Next Step Suggestion:**
+
+Now that you've announced the dataset import, it would be a good time to start integrating this data into your analysis. Consider adding code to load, preprocess, or visualize the liver snRNA-seq data. This will directly build upon the announcement you just made and move your research forward. You could also consider adding a brief explanation in a new markdown cell about the significance of this particular dataset for your research question.
+
