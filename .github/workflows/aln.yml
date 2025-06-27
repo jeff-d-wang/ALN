@@ -60,8 +60,8 @@ jobs:
           echo "Previous IPYNB: $PREV_IPYNB_PATH"
 
           python .github/workflows/main.py \
-            --curr "$CURRENT_IPYNB_PATH" \
-            --prev "$PREVIOUS_IPYNB_PATH" \
+            --curr "$CURR_IPYNB_PATH" \
+            --prev "$PREV_IPYNB_PATH" \
             --output "./aln_output/"
 
       - name: Upload aln_output as an artifact
