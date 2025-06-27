@@ -24,7 +24,7 @@ def process_notebooks(input, output_dir):
             print("Successfully loaded current notebook.")
 
         except FileNotFoundError:
-            print(f"Error: Current notebook not found at {curr_ipynb_path}")
+            print(f"Error: Current notebook not found at {curr_path}")
             return
         except Exception as e:
             print(f"Error loading current notebook: {e}")
@@ -44,10 +44,10 @@ def process_notebooks(input, output_dir):
 
         # Compare notebooks
         markdown_content = f"# Analysis Output\n\n"
-        markdown_content += f"Generated from: `{os.path.basename(curr_ipynb_path)}`\n\n"
+        markdown_content += f"Generated from: `{os.path.basename(curr_path)}`\n\n"
 
         if previous_nb:
-            markdown_content += f"Compared with: `{os.path.basename(prev_ipynb_path)}`\n\n"
+            markdown_content += f"Compared with: `{os.path.basename(prev_path)}`\n\n"
             markdown_content += "## Changes Observed (Placeholder)\n"
             current_cells = len(current_nb.cells) if current_nb else 0
             previous_cells = len(previous_nb.cells) if previous_nb else 0
