@@ -35,16 +35,24 @@ jobs:
           mkdir -p prev_notebooks
           INPUT_ARGS=""
 
+          # get the most recent non-bot commit
+          TRUE_PREV_COMMIT=$(git rev-list HEAD --max-count=1 --skip=1 --author='^(?!github-actions\[bot\])' --regexp-ignore-case)
+
+          if [ -z "$TRUE_PREV_COMMIT" ]; then
+            echo "Previous human-made commit not found; skipping ALN."
+            exit 0
+          fi
+
           for CURR_PATH in $(find . -maxdepth 1 -name "*.ipynb"); do
             CURR_NAME=$(basename "$CURR_PATH")
 
             echo "Found current notebook: $CURR_NAME"
 
-            if git show HEAD^:"$CURR_NAME" > "prev_notebooks/$CURR_NAME"; then
+            if git show "$TRUE_PREV_COMMIT":"$CURR_NAME" > "prev_notebooks/$CURR_NAME"; then
               echo "Recovered previous version of $CURR_NAME"
               INPUT_ARGS+=" prev_notebooks/$CURR_NAME $CURR_PATH"
             else
-              echo "Previous version of $CURR_NAME not found; skipping."
+              echo "Previous version of $CURR_NAME not found; skipping notebook."
             fi
           done
 
