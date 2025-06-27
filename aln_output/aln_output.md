@@ -10,3 +10,9 @@ Updated `notebook_1_xenium_import.ipynb` to explore innate T cell location.
 
 ---
 
+## Research Progress Update (2025-06-27 12:30:27)
+
+Updated notebook `note_amy.ipynb` adds a print statement indicating work on "KCO data".
+
+---
+
