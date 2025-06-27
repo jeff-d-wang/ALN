@@ -12,7 +12,7 @@ import pytz
 # --- Setup Gemini API ---
 GEMINI_API_KEY = os.environ["GEMINI_API_KEY"] 
 THINKING_BUDGET = 0
-MODEL = "gemini-2.5-flash"
+MODEL = "gemini-2.5-flash-lite-preview-06-17"
 
 def sanitize_filename(name):
     """Sanitize notebook name for use in filenames."""

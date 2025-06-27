@@ -8,9 +8,8 @@ from google.genai import types
 import os
 
 # === CONFIG ===
-# API_KEY = "AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko"
 API_KEY = os.environ["GEMINI_API_KEY"]
-MODEL = "gemini-2.5-flash"
+MODEL = "gemini-2.5-flash-lite-preview-06-17"
 THINKING_BUDGET = 0
 
 # === FUNCTIONS ===
