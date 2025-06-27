@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository with fetch-depth 2
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2 # Fetches current and previous commit
+          fetch-depth: 2
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,40 +29,32 @@ jobs:
           python -m pip install --upgrade pip
           pip install nbconvert
 
-      - name: Get previous commit's ipynb file
-        id: get-ipynb-path
+      - name: Extract current and previous .ipynb files
+        id: extract-ipynbs
         run: |
-          CURR_IPYNB=$(find . -name "*.ipynb" | head -n 1)
+          mkdir -p prev_notebooks
+          INPUT_ARGS=""
 
-          if [ -z "$CURR_IPYNB" ]; then
-            echo "No .ipynb file found in the current commit. Exiting."
-            exit 1
-          fi
-          echo "Current .ipynb file: $CURR_IPYNB"
-          echo "CURR_IPYNB_PATH=$CURR_IPYNB" >> $GITHUB_ENV
+          for CURR_PATH in $(find . -maxdepth 1 -name "*.ipynb"); do
+            CURR_NAME=$(basename "$CURR_PATH")
 
-          PREV_COMMIT_SHA=$(git rev-parse HEAD~1)
-          PREV_IPYNB=$(git show $PREV_COMMIT_SHA --name-only --diff-filter=A --diff-filter=M | grep "$(basename "$CURR_IPYNB")" | head -n 1)
+            echo "Found current notebook: $CURR_NAME"
 
-          if [ -z "$PREV_IPYNB" ]; then
-            echo "No .ipynb file found in the previous commit, or it was deleted."
-            exit 1
-          fi
+            if git show HEAD^:"$CURR_NAME" > "prev_notebooks/$CURR_NAME"; then
+              echo "Recovered previous version of $CURR_NAME"
+              INPUT_ARGS+=" prev_notebooks/$CURR_NAME $CURR_PATH"
+            else
+              echo "Previous version of $CURR_NAME not found; skipping."
+            fi
+          done
 
-          git show $PREV_COMMIT_SHA:$PREV_IPYNB > prev_commit.ipynb
-          echo "Copied previous commit's .ipynb file to prev_commit.ipynb"
-          echo "PREV_IPYNB_PATH=prev_commit.ipynb" >> $GITHUB_ENV
+          echo "FINAL_INPUT_ARGS=$INPUT_ARGS" >> $GITHUB_ENV
 
       - name: Execute ALN Python script and generate log
         run: |
-          echo "Executing main.py with:"
-          echo "Current IPYNB: $CURR_IPYNB_PATH"
-          echo "Previous IPYNB: $PREV_IPYNB_PATH"
-
-          python .github/workflows/main.py \
-            --curr "$CURR_IPYNB_PATH" \
-            --prev "$PREV_IPYNB_PATH" \
-            --output "./aln_output/"
+          echo "Running main.py with inputs: $FINAL_INPUT_ARGS"
+          mkdir -p aln_output
+          python .github/workflows/main.py --input $FINAL_INPUT_ARGS --output ./aln_output/
 
       - name: Upload aln_output as an artifact
         uses: actions/upload-artifact@v4
