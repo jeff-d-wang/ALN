@@ -12,6 +12,7 @@ import pytz
 # --- Setup Gemini API ---
 GEMINI_API_KEY = "AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko"
 THINKING_BUDGET = 0
+MODEL = "gemini-2.5-flash-lite-preview-06-17"
 
 def sanitize_filename(name):
     """Sanitize notebook name for use in filenames."""
@@ -83,7 +84,7 @@ def summarize_changes(content_old, content_new):
 
     client = genai.Client(api_key=GEMINI_API_KEY)
     response = client.models.generate_content(
-        model="gemini-2.5-flash-lite-preview-06-17",
+        model=MODEL,
         contents=prompt,
         config=types.GenerateContentConfig(
             thinking_config=types.ThinkingConfig(thinking_budget=THINKING_BUDGET)
@@ -114,7 +115,7 @@ def summarize_notebook_pairs(notebook_pairs, output_file):
 
     client = genai.Client(api_key=GEMINI_API_KEY)
     response = client.models.generate_content(
-        model="gemini-2.5-flash-lite-preview-06-17",
+        model=MODEL,
         contents=combined_prompt,
         config=types.GenerateContentConfig(
             thinking_config=types.ThinkingConfig(thinking_budget=THINKING_BUDGET)

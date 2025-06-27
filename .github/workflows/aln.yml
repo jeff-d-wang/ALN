@@ -102,6 +102,7 @@ jobs:
           echo "Running script_summarize_changes.py with inputs: $FINAL_INPUT_ARGS"
           mkdir -p aln_output
           python .github/workflows/script_summarize_changes.py --input $FINAL_INPUT_ARGS --output ./aln_output/aln_output.md
+          python .github/workflows/script_provide_suggestions.py ./aln_output/aln_output.md ./aln_output/aln_suggestions.md
 
       - name: Upload aln_output as an artifact
         uses: actions/upload-artifact@v4
