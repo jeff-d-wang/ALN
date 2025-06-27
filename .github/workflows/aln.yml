@@ -61,6 +61,7 @@ jobs:
               continue
             fi
 
+            echo "🔸 Checking commit: $COMMIT by $AUTHOR"
             # Only consider commits with .ipynb changes
             if git diff-tree --no-commit-id --name-only -r "$COMMIT" | grep '\.ipynb'; then
               TRUE_PREV_COMMIT="$COMMIT"
@@ -70,6 +71,7 @@ jobs:
             fi
           done
 
+          echo "🔵 True Previous Commit (non-bot): $TRUE_PREV_COMMIT"
           if [ -z "$TRUE_PREV_COMMIT" ]; then
             echo "Previous human-made commit not found; skipping ALN."
             exit 0
