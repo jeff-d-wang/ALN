@@ -30,3 +30,9 @@ Updated the `notebook_3_liver_snRNA.ipynb` to capture all cell outputs, specific
 
 ---
 
+## Research Progress Update (2025-06-27 14:23:55)
+
+Updated the snRNA-seq analysis (`notebook_3_liver_snRNA.ipynb`) to include an additional UMAP visualization with a frame, facilitating comparison (Figure: `notebook_3_liver_snRNA_cell6_out2.png`). Also added an empty cell for future work. No changes were made to `notebook_2_liver_xenium.ipynb` or `notebook_1_liver_analysis_1.ipynb`. Input files remain `/Users/jamesbolepan/Documents/research_LiverStress_Immune/rds_manual_extract/liver_frozenTissue_RNA.h5ad`, `/Users/jamesbolepan/Documents/research_LiverStress_Immune/xenium_manual_extract/xenium_adata.h5ad`, and `"/Users/jamesbolepan/Documents/research_LiverStress_Immune/rds_manual_extract/liver_liveTissue_RNA.h5ad"`.
+
+---
+

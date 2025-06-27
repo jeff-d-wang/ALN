@@ -16,3 +16,7 @@ With `notebook_3_liver_snRNA.ipynb` now set up for single-nucleus RNA-seq analys
 
 Given that you've now set up and run `notebook_3_liver_snRNA.ipynb` to capture all outputs, a logical next step would be to perform a more in-depth comparison of the identified cell populations and marker genes between the single-nucleus data (`notebook_3`) and the single-cell data (`notebook_1`). This could involve comparing specific cell type proportions, or identifying genes that are differentially expressed between "similar" cell types found in both datasets, potentially highlighting technical differences or biological insights related to tissue dissociation methods.
 
+## 2025-06-27 14:23:58 Next Step Suggestions 
+
+Given that you've now consistently captured outputs and refined visualizations in `notebook_3_liver_snRNA.ipynb`, a focused next step would be to specifically compare the UMAP layouts and clustering results from `notebook_3` (single-nucleus) and `notebook_1` (single-cell). Are the major cell populations similarly structured in both UMAPs? Do the Leiden clusters align well between the two, even with the different tissue inputs and processing? This direct visual and quantitative comparison will help assess consistency and highlight potential differences arising from the live vs. frozen tissue preparation.
+
