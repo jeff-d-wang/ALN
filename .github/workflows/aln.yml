@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '**.ipynb'
 
 jobs:
   build:
@@ -22,7 +24,7 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install dependencies (optional, but good practice)
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install nbconvert
@@ -30,8 +32,17 @@ jobs:
       - name: Get previous commit's ipynb file
         id: get-ipynb-path
         run: |
+          CURR_IPYNB=$(find . -name "*.ipynb" | head -n 1)
+
+          if [ -z "$CURR_IPYNB" ]; then
+            echo "No .ipynb file found in the current commit. Exiting."
+            exit 1
+          fi
+          echo "Current .ipynb file: $CURR_IPYNB"
+          echo "CURR_IPYNB_PATH=$CURR_IPYNB" >> $GITHUB_ENV
+
           PREV_COMMIT_SHA=$(git rev-parse HEAD~1)
-          PREV_IPYNB=$(git show $PREV_COMMIT_SHA --name-only --diff-filter=A --diff-filter=M | grep '\.ipynb$' | head -n 1)
+          PREV_IPYNB=$(git show $PREV_COMMIT_SHA --name-only --diff-filter=A --diff-filter=M | grep "$(basename "$CURR_IPYNB")" | head -n 1)
 
           if [ -z "$PREV_IPYNB" ]; then
             echo "No .ipynb file found in the previous commit, or it was deleted."
@@ -44,16 +55,14 @@ jobs:
 
       - name: Execute ALN Python script and generate log
         run: |
-          echo "Running Python script with ipynb file from previous commit: $PREV_IPYNB_PATH"
+          echo "Executing main.py with:"
+          echo "Current IPYNB: $CURR_IPYNB_PATH"
+          echo "Previous IPYNB: $PREV_IPYNB_PATH"
 
-          # Example: A simple Python script that uses the ipynb (replace with your actual script)
-          # python your_script.py --ipynb-file $PREV_IPYNB_PATH
-
-          # Creating the aln_output folder and files
-          echo "Creating aln_output directory and files..."
-          mkdir -p aln_output/images
-          echo "# Hello alan." > aln_output/output.md
-          echo "Hello jeff." >> aln_output/output.md
+          python .github/workflows/main.py \
+            --curr "$CURRENT_IPYNB_PATH" \
+            --prev "$PREVIOUS_IPYNB_PATH" \
+            --output "./aln_output/"
 
       - name: Upload aln_output as an artifact
         uses: actions/upload-artifact@v4
@@ -63,7 +72,7 @@ jobs:
           overwrite: true
 
       - name: Commit aln_output
-        if: success() # Only commit if previous steps succeeded
+        if: success()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
