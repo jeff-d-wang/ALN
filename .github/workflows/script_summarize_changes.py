@@ -19,7 +19,7 @@ def sanitize_filename(name):
     return re.sub(r'[^\w\-_.]', '_', os.path.splitext(os.path.basename(name))[0])
 
 
-def extract_cells(notebook_path, images_folder="notebook_images"):
+def extract_cells(notebook_path, images_folder="./aln_output/notebook_images"):
     notebook_id = sanitize_filename(notebook_path)
     os.makedirs(images_folder, exist_ok=True)
 
