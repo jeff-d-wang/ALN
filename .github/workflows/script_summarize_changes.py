@@ -7,9 +7,10 @@ import base64
 import getpass
 import re
 from google.genai import types
+import pytz
 
 # --- Setup Gemini API ---
-GEMINI_API_KEY = "AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko" # getpass.getpass("Enter your API key: ")
+GEMINI_API_KEY = "AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko"
 THINKING_BUDGET = 0
 
 def sanitize_filename(name):
@@ -121,8 +122,9 @@ def summarize_notebook_pairs(notebook_pairs, output_file):
     )
     final_summary = response.text.strip()
 
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
+    tz = pytz.timezone("America/New_York")  # Change to your desired timezone
+    timestamp = datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
+    
     # Format the markdown content
     md_entry = f"## Research Progress Update ({timestamp})\n\n{final_summary}\n\n---\n\n"
 
