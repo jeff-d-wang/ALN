@@ -35,6 +35,16 @@ jobs:
           mkdir -p prev_notebooks
           INPUT_ARGS=""
 
+          CURRENT_COMMIT=$(git rev-parse HEAD)
+          CURRENT_COMMIT_MSG=$(git log -1 --pretty=%s)
+          CURRENT_AUTHOR=$(git log -1 --pretty=%an)
+
+          echo "🟢 Current Commit:"
+          echo "🔢 Hash: $CURRENT_COMMIT"
+          echo "👤 Author: $CURRENT_AUTHOR"
+          echo "📝 Message: $CURRENT_COMMIT_MSG"
+          echo ""
+
           TRUE_PREV_COMMIT=""
           for COMMIT in $(git rev-list HEAD); do
             AUTHOR=$(git show -s --format='%an' "$COMMIT")
@@ -48,8 +58,15 @@ jobs:
             echo "Previous human-made commit not found; skipping ALN."
             exit 0
           fi
+          
+          TRUE_PREV_COMMIT_MSG=$(git log -1 --pretty=%s $TRUE_PREV_COMMIT)
+          TRUE_PREV_AUTHOR=$(git log -1 --pretty=%an $TRUE_PREV_COMMIT)
 
-          echo "Referencing $TRUE_PREV_COMMIT as previous commit"
+          echo "🔵 True Previous Commit (non-bot):"
+          echo "🔢 Hash: $TRUE_PREV_COMMIT"
+          echo "👤 Author: $TRUE_PREV_AUTHOR"
+          echo "📝 Message: $TRUE_PREV_COMMIT_MSG"
+          echo ""
 
           for CURR_PATH in $(find . -maxdepth 1 -name "*.ipynb"); do
             CURR_NAME=$(basename "$CURR_PATH")
