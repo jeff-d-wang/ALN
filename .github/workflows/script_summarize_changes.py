@@ -18,49 +18,54 @@ def sanitize_filename(name):
     """Sanitize notebook name for use in filenames."""
     return re.sub(r'[^\w\-_.]', '_', os.path.splitext(os.path.basename(name))[0])
 
-def extract_cells(notebook_path, images_folder="notebook_images"):
-    if not os.path.exists(notebook_path):
-        return "This notebook does not exist."
-    
-    with open(notebook_path, 'r') as f:
-        nb = json.load(f)
 
+def extract_cells(notebook_path, images_folder="notebook_images"):
     notebook_id = sanitize_filename(notebook_path)
     os.makedirs(images_folder, exist_ok=True)
 
     cells = []
 
-    for i, cell in enumerate(nb["cells"]):
-        entry = {"type": cell["cell_type"], "source": "".join(cell.get("source", [])), "outputs": []}
-        
-        if cell["cell_type"] == "code":
-            for j, output in enumerate(cell.get("outputs", [])):
-                if output["output_type"] in ("execute_result", "display_data"):
-                    data = output.get("data", {})
-                    
-                    if "text/plain" in data:
-                        entry["outputs"].append(data["text/plain"])
-                    
-                    if "image/png" in data:
-                        img_b64 = data["image/png"]
-                        img_data = base64.b64decode(img_b64)
-                        filename = f"{notebook_id}_cell{i+1}_out{j+1}.png"
-                        filepath = os.path.join(images_folder, filename)
-                        with open(filepath, "wb") as f:
-                            f.write(img_data)
-                        entry["outputs"].append(f"![Image {j+1} from Cell {i+1}]({filepath})")
-                
-                elif output["output_type"] == "stream":
-                    entry["outputs"].append("".join(output.get("text", "")))
+    if not os.path.exists(notebook_path) or os.path.getsize(notebook_path) == 0:
+        # Create a placeholder cell entry if file is missing or empty
+        cells.append({
+            "type": "markdown",
+            "source": f"📘 Notebook `{notebook_id}` is newly created and has no prior version. This is a placeholder cell. Please summarize the key content and changes introduced in the newer notebook, rather than comparing differences.",
+            "outputs": []
+        })
+    else:
+        with open(notebook_path, 'r') as f:
+            nb = json.load(f)
 
-        cells.append(entry)
+        for i, cell in enumerate(nb.get("cells", [])):
+            entry = {
+                "type": cell.get("cell_type", "unknown"),
+                "source": "".join(cell.get("source", [])),
+                "outputs": []
+            }
+
+            if cell.get("cell_type") == "code":
+                for j, output in enumerate(cell.get("outputs", [])):
+                    if output.get("output_type") in ("execute_result", "display_data"):
+                        data = output.get("data", {})
+                        if "text/plain" in data:
+                            entry["outputs"].append(data["text/plain"])
+                        if "image/png" in data:
+                            img_b64 = data["image/png"]
+                            img_data = base64.b64decode(img_b64)
+                            filename = f"{notebook_id}_cell{i+1}_out{j+1}.png"
+                            filepath = os.path.join(images_folder, filename)
+                            with open(filepath, "wb") as f_img:
+                                f_img.write(img_data)
+                            entry["outputs"].append(f"![Image {j+1} from Cell {i+1}]({filepath})")
+                    elif output.get("output_type") == "stream":
+                        entry["outputs"].append("".join(output.get("text", "")))
+            cells.append(entry)
 
     # Format for LLM prompt
     formatted_cells = []
     for idx, cell in enumerate(cells, 1):
         section = f"### Cell {idx} ({cell['type']})\n"
         section += f"**Source**:\n```python\n{cell['source']}\n```\n"
-
         if cell["outputs"]:
             section += "**Outputs**:\n"
             for out in cell["outputs"]:
