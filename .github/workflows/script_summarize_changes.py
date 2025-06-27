@@ -10,9 +10,9 @@ from google.genai import types
 import pytz
 
 # --- Setup Gemini API ---
-GEMINI_API_KEY = os.environ["GEMINI_API_KEY"] #"AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko"
+GEMINI_API_KEY = os.environ["GEMINI_API_KEY"] 
 THINKING_BUDGET = 0
-MODEL = "gemini-2.5-flash-lite-preview-06-17"
+MODEL = "gemini-2.5-flash"
 
 def sanitize_filename(name):
     """Sanitize notebook name for use in filenames."""

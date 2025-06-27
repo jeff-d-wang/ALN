@@ -10,7 +10,7 @@ import os
 # === CONFIG ===
 # API_KEY = "AIzaSyAXtXBMko975PiYZ42U-Lt7vJPkkjmQTko"
 API_KEY = os.environ["GEMINI_API_KEY"]
-MODEL = "gemini-2.5-flash-lite-preview-06-17"
+MODEL = "gemini-2.5-flash"
 THINKING_BUDGET = 0
 
 # === FUNCTIONS ===
