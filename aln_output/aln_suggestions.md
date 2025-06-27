@@ -10,3 +10,7 @@ You've now explored *Pdcd1* expression and performed Leiden clustering on your l
 
 **Suggestion:** Given the newly generated Leiden clusters, a good next step would be to perform differential gene expression analysis between these clusters. This will help you identify marker genes for each cluster and potentially annotate them with known cell types, providing biological context to your clustering results.
 
+## 2025-06-27 13:02:56 Next Step Suggestions 
+
+It's great that you're refining your clustering resolution! With the increased Leiden clustering resolution to `1.0` and the updated `leiden_1.0` key, a logical next step would be to **re-evaluate and potentially re-annotate your cell types based on the new clustering.** This could involve re-running marker gene identification for the new clusters and comparing them to known cell type markers to confirm or refine their annotations.
+

@@ -16,3 +16,9 @@ A new analysis pipeline was introduced for `liver_liveTissue_RNA.h5ad`, includin
 
 ---
 
+## Research Progress Update (2025-06-27 13:02:55)
+
+Increased Leiden clustering resolution to `1.0` (previously `0.5`), updating cluster key to `leiden_1.0`. This impacts marker gene identification and visualization, as reflected in updated UMAP and dot plot outputs. The input dataset used was `/Users/jamesbolepan/Documents/research_LiverStress_Immune/rds_manual_extract/liver_liveTissue_RNA.h5ad`.
+
+---
+
