@@ -16,3 +16,9 @@ Updated notebook `note_amy.ipynb` adds a print statement indicating work on "KCO
 
 ---
 
+## Research Progress Update (2025-06-27 12:36:48)
+
+No changes were made to `note_amy.ipynb` or `notebook_1_xenium_import.ipynb`. The `notebook_jeff.ipynb` notebook had its placeholder text replaced with a comment regarding CMU class selection.
+
+---
+

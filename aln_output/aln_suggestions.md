@@ -12,3 +12,9 @@ You're making excellent progress with the Xenium import notebook, specifically f
 
 It's great that you're starting to work with the "KCO data" in `note_amy.ipynb`! Since you've just added a print statement to indicate this work, a good next step would be to **begin loading and inspecting the KCO data.** This could involve reading the data into a DataFrame, checking its structure, and perhaps printing the first few rows to get a feel for its contents.
 
+## 2025-06-27 12:36:50 Next Step Suggestions 
+
+## 2025-06-27 12:36:50 Next Step Suggestions
+
+It's good that you've made progress on `notebook_jeff.ipynb` by replacing the placeholder text. Given that your focus has shifted slightly with this change, a good next step would be to **begin outlining the specific tasks or analyses you intend to perform in `notebook_jeff.ipynb` related to CMU class selection.** This could involve adding comments to indicate the initial steps or the types of data you expect to work with for this purpose.
+
