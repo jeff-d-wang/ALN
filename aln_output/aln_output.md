@@ -54,3 +54,9 @@ This update introduces data subsampling to `notebook_1_liver_analysis_1.ipynb`, 
 
 ---
 
+## Research Progress Update (2025-06-27 14:58:49)
+
+The notebook `notebook_3_liver_snRNA.ipynb` was updated to include a new dotplot visualizing the top 5 marker genes for each Leiden cluster, enhancing the characterization of cell populations. The `notebook_1_liver_analysis_1.ipynb` was updated by increasing the data subsampling fraction from 0.1 to 0.9, significantly expanding the analyzed cell count. The notebook `notebook_2_liver_xenium.ipynb` showed no changes between versions.
+
+---
+

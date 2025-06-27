@@ -38,3 +38,9 @@ The most recent change involves subsampling the data in `notebook_1_liver_analys
 
 Considering this, a good next step would be to **evaluate the impact of this data subsampling on the results of `notebook_1_liver_analysis_1.ipynb`**. Specifically, compare the UMAP visualizations and Leiden cluster assignments obtained from the subsampled data with those from the full dataset (as it was before the subsampling). Does the reduced cell count significantly alter the major cell populations identified or the overall structure of the data? This evaluation will help you determine if the subsampling is an appropriate strategy for your analysis or if further adjustments are needed.
 
+## 2025-06-27 14:58:51 Next Step Suggestions 
+
+You've recently adjusted the data subsampling fraction in `notebook_1_liver_analysis_1.ipynb` to 0.9, effectively increasing the analyzed cell count back to 90% of the original. This follows a previous subsampling to 10%. You also added a new dotplot to `notebook_3_liver_snRNA.ipynb` to visualize marker genes.
+
+Given these recent changes, a logical next step would be to **re-evaluate the impact of the increased subsampling fraction (0.9) in `notebook_1_liver_analysis_1.ipynb` by comparing its results (UMAP, clusters, marker genes) to the previous 10% subsample and potentially the original full dataset.** This will help you confirm if the current subsampling level provides a good balance between computational efficiency and capturing the full biological signal. You could also now **compare the newly generated marker gene dotplot in `notebook_3_liver_snRNA.ipynb` with the marker genes identified in `notebook_1_liver_analysis_1.ipynb` (using the 0.9 subsample).** This comparison is crucial for identifying conserved cell types and potential differences due to the live vs. frozen tissue processing.
+
