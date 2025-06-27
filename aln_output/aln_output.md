@@ -4,3 +4,9 @@ Updated Xenium import notebook to include additional imports and minor text edit
 
 ---
 
+## Research Progress Update (2025-06-27 12:28:00)
+
+Updated `notebook_1_xenium_import.ipynb` to explore innate T cell location.
+
+---
+
