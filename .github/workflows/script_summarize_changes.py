@@ -19,10 +19,9 @@ def sanitize_filename(name):
     return re.sub(r'[^\w\-_.]', '_', os.path.splitext(os.path.basename(name))[0])
 
 
-def extract_cells(notebook_path, images_folder="notebook_images"):
+def extract_cells(notebook_path, images_folder="./aln_output/notebook_images"):
     notebook_id = sanitize_filename(notebook_path)
-    os_images_folder = os.path.join("./aln_output/", images_folder)
-    os.makedirs(os_images_folder, exist_ok=True)
+    os.makedirs(images_folder, exist_ok=True)
 
     cells = []
 
@@ -135,7 +134,7 @@ def summarize_notebook_pairs(notebook_pairs, output_file):
     
     # Format the markdown content
     md_entry = f"## Research Progress Update ({timestamp})\n\n{final_summary}\n\n---\n\n"
-
+    md_entry = md_entry.replace("aln_output/", "./")
     # Append to the output markdown file
     with open(output_file, "a") as f:
         f.write(md_entry)
